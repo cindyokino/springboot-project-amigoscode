@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -15,7 +14,7 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getStudents() {
-        return Arrays.asList(
+        return List.of(
                 new Student(
                         1L,
                         "Mariam",
