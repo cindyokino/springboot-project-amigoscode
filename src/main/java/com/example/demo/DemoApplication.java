@@ -20,24 +20,10 @@ import java.util.List;
         HibernateJpaAutoConfiguration.class
 })
 
-@RestController
 public class DemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
-    }
-
-    @GetMapping
-    public List<Student> hello() {
-        return Arrays.asList(
-                new Student(
-                        1L,
-                        "Mariam",
-                        "mariam.jamal@gmail.com",
-                        LocalDate.of(1993, Month.APRIL, 1),
-                        29
-                )
-        );
     }
 
 }
