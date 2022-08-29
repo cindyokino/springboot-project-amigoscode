@@ -2,10 +2,12 @@ package com.example.demo.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
-public class Student {
+public class
+Student {
     @Id
     @SequenceGenerator(
             name = "student_sequence",
@@ -21,25 +23,24 @@ public class Student {
     public String name;
     public String email;
     public LocalDate dob;
+    @Transient // this field doesn't need to be stored in database, it can be calculated instead
     public Integer age;
 
     public Student() {
     }
 
-    public Student(Long id, String name, String email, LocalDate dob, Integer age) {
+    public Student(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     //constructor without ID, the database will generate the ID.
-    public Student(String name, String email, LocalDate dob, Integer age) {
+    public Student(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
     }
 
     public Long getId() {
@@ -75,7 +76,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob, LocalDate.now()).getYears(); // calculate age
     }
 
     public void setAge(Integer age) {
